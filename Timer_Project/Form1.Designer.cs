@@ -51,6 +51,7 @@ namespace Timer_Project
             hour_tr.BackColor = Color.FromArgb(255, 255, 255, 102);
             hour_tr.Minimum = 0;
             hour_tr.Maximum = 23;
+            hour_tr.Value = hour_tr.Minimum;
             hour_tr.Location = new Point(10, 20);
             hour_tr.ValueChanged += Hour_tr_ValueChanged;
 
@@ -59,6 +60,7 @@ namespace Timer_Project
             minute_tr.BackColor = Color.FromArgb(255, 255, 255, 102);
             minute_tr.Minimum = 0;
             minute_tr.Maximum = 59;
+            minute_tr.Value = minute_tr.Minimum;
             minute_tr.Width = 300;
             minute_tr.ValueChanged += Minute_tr_ValueChanged;
 
@@ -67,6 +69,7 @@ namespace Timer_Project
             second_tr.BackColor = Color.FromArgb(255, 255, 255, 102);
             second_tr.Minimum = 0;
             second_tr.Maximum = 59;
+            second_tr.Value = second_tr.Minimum;
             second_tr.Width = 300;
             second_tr.ValueChanged += Second_tr_ValueChanged;
 
@@ -100,6 +103,14 @@ namespace Timer_Project
             TR_label.Height = 200;
             TR_label.Text = "TIMER";
 
+            timer_label_hour = new Label();
+            timer_label_hour.Location = new Point(100, 50);
+            timer_label_minute = new Label();
+            timer_label_minute.Location = new Point(250, 50);
+            timer_label_second = new Label();
+            timer_label_second.Location = new Point(400, 50);
+
+            timer = new Timer();
 
             this.Controls.Add(TR_label);
             this.Controls.Add(TR_box);
@@ -112,6 +123,9 @@ namespace Timer_Project
 
             this.Controls.Add(start_btn);
 
+            TR_label.Controls.Add(timer_label_hour);
+            TR_label.Controls.Add(timer_label_minute);
+            TR_label.Controls.Add(timer_label_second);
         }
 
        
@@ -125,6 +139,11 @@ namespace Timer_Project
         Label hour_l;
         Label minute_l;
         Label second_l;
+        Timer timer;
+        Label timer_label_hour;
+        Label timer_label_minute;
+        Label timer_label_second;
+
         #endregion
     }
 }
