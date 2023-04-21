@@ -103,12 +103,14 @@ namespace Timer_Project
             TR_label.Height = 200;
             TR_label.Text = "TIMER";
 
-            timer_label_hour = new Label();
-            timer_label_hour.Location = new Point(100, 50);
-            timer_label_minute = new Label();
-            timer_label_minute.Location = new Point(250, 50);
+            //timer_label_hour = new Label();
+            //timer_label_hour.Location = new Point(100, 50);
+            //timer_label_minute = new Label();
+            //timer_label_minute.Location = new Point(250, 50);
             timer_label_second = new Label();
             timer_label_second.Location = new Point(400, 50);
+            timer_label_second.Size = new Size(100, 100);
+            timer_label_second.Font = new Font("ubuntu", 24, FontStyle.Bold);
 
             timer = new Timer();
 
@@ -123,8 +125,8 @@ namespace Timer_Project
 
             this.Controls.Add(start_btn);
 
-            TR_label.Controls.Add(timer_label_hour);
-            TR_label.Controls.Add(timer_label_minute);
+            //TR_label.Controls.Add(timer_label_hour);
+            //R_label.Controls.Add(timer_label_minute);
             TR_label.Controls.Add(timer_label_second);
         }
 
@@ -140,8 +142,8 @@ namespace Timer_Project
         Label minute_l;
         Label second_l;
         System.Windows.Forms.Timer timer;
-        Label timer_label_hour;
-        Label timer_label_minute;
+        //Label timer_label_hour;
+        //Label timer_label_minute;
         Label timer_label_second;
 
         #endregion
