@@ -15,8 +15,8 @@ namespace Timer_Project
         private int h;
         private int m;
         private int s;
-        private int I = 0;
-        
+        private int i = 0;
+        private int flag_min = 0;
 
         public Form1()
         {
@@ -25,15 +25,15 @@ namespace Timer_Project
 
         private void Start_btn_Click(object sender, System.EventArgs e)
         {
-            h = 36000 * hour_tr.Value;
-            m = 600 * minute_tr.Value;
-            s = 10 * second_tr.Value;
-            timer.Interval = h + m + s;
+            h = hour_tr.Value;
+            m = minute_tr.Value;
+            s = second_tr.Value;
+            timer.Interval = h * 3600 + m * 60 + s * 1;
             timer.Start();
             timer_label_second.Text = second_tr.Value.ToString();
             timer_label_minute.Text = minute_tr.Value.ToString();
             timer_label_hour.Text = hour_tr.Value.ToString();
-            I = timer.Interval;
+            i = timer.Interval;
             timer.Tick += Timer_Tick;
         }
 
@@ -54,20 +54,41 @@ namespace Timer_Project
 
         private void Timer_Tick(object sender, System.EventArgs e)
         {
-            if (I % 10 == 0 && second_tr.Value > 0) 
-            { 
-                --(second_tr.Value);
-                timer_label_second.Text = second_tr.Value.ToString();
-                
-            }
-            if (second_tr.Value == 0 && I % 60 == 0 && minute_tr.Value > 0)
+            if(hour_tr.Value > 0)
             {
-                --(minute_tr.Value);
+                if(flag_min == 0 || flag_min % 3600 == 0)
+                {
+                    hour_tr.Value--;
+                    timer_label_hour.Text = hour_tr.Value.ToString();
+                    minute_tr.Value = 59;
+                    timer_label_minute.Text = minute_tr.Value.ToString();
+                    second_tr.Value = 60;
+                    timer_label_second.Text = second_tr.Value.ToString();
+                }
+            }
+            else if(minute_tr.Value > 0)
+            {
+                if(flag_min == 0 || flag_min % 60 == 0)
+                {
+                    minute_tr.Value = m - 1;
+                    timer_label_minute.Text = minute_tr.Value.ToString();
+                    m--;
+                    second_tr.Value = 60;
+                    timer_label_second.Text = second_tr.Value.ToString();
+                }
+            }
+            //if (flag_min > 0 && flag_min % 1 == 0)
+            //{
+            second_tr.Value--;
+            timer_label_second.Text = second_tr.Value.ToString();
+            //}
+            if(m > 0 && flag_min > 0 && flag_min % 60 == 0)
+            {
+                minute_tr.Value--;
                 timer_label_minute.Text = minute_tr.Value.ToString();
             }
-           
-            if(I == 0) timer.Stop();
-            --I;
+            if(i == flag_min) timer.Stop();
+            flag_min++;
         }
     }
 }

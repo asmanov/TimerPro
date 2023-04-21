@@ -68,7 +68,7 @@ namespace Timer_Project
             second_tr.Location = new Point(10, minute_tr.Location.Y + minute_tr.Height + 10);
             second_tr.BackColor = Color.FromArgb(255, 255, 255, 102);
             second_tr.Minimum = 0;
-            second_tr.Maximum = 59;
+            second_tr.Maximum = 60;
             second_tr.Value = second_tr.Minimum;
             second_tr.Width = 300;
             second_tr.ValueChanged += Second_tr_ValueChanged;
@@ -139,7 +139,7 @@ namespace Timer_Project
         Label hour_l;
         Label minute_l;
         Label second_l;
-        Timer timer;
+        System.Windows.Forms.Timer timer;
         Label timer_label_hour;
         Label timer_label_minute;
         Label timer_label_second;
